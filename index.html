@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>South PH</title>
+    <link rel = "stylesheet" href="style.css">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js"></script>
+</head>
+
+
+
+<body>
+    <header class="header">
+        <a href="#" class="logo">South<span>PH</span></a>
+
+        <input type="checkbox" id="check">
+        <label for="check" class="icons">
+            <i class='bx bx-menu' id="menu-icon"></i>
+            <i class='bx bx-x' id="close-icon"></i>
+        </label>
+
+        <nav class="navbar">
+            <a href="#section1" class="active">Home</a>
+            <a href="#section2">About</a>
+            <a href="#section3">Content</a>
+        </nav>
+    </header>
+<!-------------------Home Section-->
+    <section class="home" id="section1">
+        <div class="home-content">
+            <h1>Hi, We are the South PH</h1>
+            <h3>Bridgewatch Based Guild</h3>
+            <h4>Come and Join us</h4>
+            <div  class="button-box">
+                <a id="discordBtn" href="#" target="_blank">Apply</a>
+                <a href="https://www.youtube.com/@SouthPH">Subscribe</a>
+            </div>
+        </div>
+
+
+    </section>
+<!-------------------About Section-->
+    <section class="about" id="section2">
+        <div class="about-content">
+            <div class="about-photo"><img class="photo" src="images/mypic.png" alt=""></div>
+                <div class="about-text">
+                    <div class="content">
+                        <h1>About Guild:</h1>
+                        <p>Join our growing Family and have Fun!!
+                            If you're looking for a friendly and comptetive guild, this is where you belong
+                            <br>
+                            <br>
+                            Daily content starts @6:00UTC (2PM PHT) onwards.
+                            <br>
+                            <br>
+                            REQUIREMENTS: 
+                            Atleast  * 20m Total Fame (PVP&PVE)                        
+                                             * Discord VC </p>
+                    </div>
+                </div>
+        </div>
+
+    </section>
+ <!-------------------Education Section-->   
+
+    <section class="education" id="section3">
+            <h2 class="heading">Daily <span>Content</span></h2> 
+        <div class="education-row">
+            <div class="education-column">
+                <h3 class="title">Content</h3>
+                <div class="education-box">
+                    <div class="education-content">
+                        <div class="content">
+                            <div class="year"><i class='bx bxs-calendar'></i>PVE</div>
+                            <h3>Static, Camp, Road</h3>
+                            <p>We do fame farming everyday mostly morning</p>
+                        </div>
+                    </div>
+
+                    <div class="education-content">
+                        <div class="content">
+                            <div class="year"><i class='bx bxs-calendar'></i>PVP</div>
+                            <h3>Castle, OP, Small Scale PVP, Medium Scale PVP, Ganking</h3>
+                            <p>We do small scale and Medium Scale PVP, and it's regearable </p>
+                        </div>
+                    </div>
+
+                    <div class="education-content">
+                        <div class="content">
+                            <div class="year"><i class='bx bxs-calendar'></i>Gathering</div>
+                            <h3>Gathering</h3>
+                            <p>You can Safely gather at our zone in Sunstrand Dunes a Tier 6 Quality 1 zone The biome is Desert, you can spec up your hide, fiber, and ore gathering</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+     <!-- Firebase Script -->
+     <script>
+        // Firebase Configuration (Replace with your own Firebase credentials)
+        const firebaseConfig = {
+            apiKey: "YOUR_API_KEY",
+            authDomain: "YOUR_PROJECT_ID.firebaseapp.com",
+            projectId: "YOUR_PROJECT_ID",
+            storageBucket: "YOUR_PROJECT_ID.appspot.com",
+            messagingSenderId: "YOUR_MESSAGING_SENDER_ID",
+            appId: "YOUR_APP_ID"
+        };
+
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+        const db = firebase.firestore();
+
+        // Fetch Discord Invite Link
+        db.collection("settings").doc("inviteLink").get().then((doc) => {
+            if (doc.exists) {
+                const discordLink = doc.data().url;
+                document.getElementById("discordBtn").href = discordLink;
+            } else {
+                console.log("No invite link found!");
+            }
+        }).catch((error) => {
+            console.error("Error fetching invite:", error);
+        });
+    </script>
+
+</html>
